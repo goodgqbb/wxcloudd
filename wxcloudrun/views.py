@@ -42,15 +42,27 @@ def duixiangcunchu(courseid):
 
 @app.route('/', methods=['POST'])
 def upload():
-#     all_files = [f for f in os.listdir('/app/wxcloudrun')]
+    #     all_files = [f for f in os.listdir('/app/wxcloudrun')]
 #     return str(all_files) #获取当前工作目录路径
+    stopwords={'我们','你们','他们','它们','因为','因而','所以','如果','那么',
+          '如此','只是','但是','就是','这是','那是','而是','而且','虽然',
+          '这些','有些','然后','已经','于是','一种','一个','一样','时候',
+    '没有','什么','这样','这种','这里','不会','一些','这个','仍然','不是',
+    '自己','知道','可以','看到','那儿','问题','一会儿','一点','现在','两个',
+         '三个','我','的','是','以及','干嘛','用来','很','到底'}
+    texts = []
+
     file = request.json.get('allcomment')
     courseid = request.json.get('courseid')
+    text = jieba.lcut(file)
+    for item in text:
+    if item not in stopwords:
+        texts.append(item)
+    
 #     file = request.form.get('allcomment')
 #     courseid = request.form.get('courseid')
-    seg = jieba.lcut(file)
     
-    text = str(seg)
+    text = str(texts)
     bg_pic = imread('/app/wxcloudrun/R-C.jpg')
     wordcloud = WordCloud(mask=bg_pic,background_color='white',font_path='/app/wxcloudrun/华文楷体.ttf',scale=1.5).generate(text)
     '''参数说明：
