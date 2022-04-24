@@ -56,8 +56,8 @@ def upload():
     courseid = request.json.get('courseid')
     text = jieba.lcut(file)
     for item in text:
-    if item not in stopwords:
-        texts.append(item)
+        if item not in stopwords:
+            texts.append(item)
     
 #     file = request.form.get('allcomment')
 #     courseid = request.form.get('courseid')
