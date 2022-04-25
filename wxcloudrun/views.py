@@ -50,9 +50,11 @@ def upload():
 #     '没有','什么','这样','这种','这里','不会','一些','这个','仍然','不是',
 #     '自己','知道','可以','看到','那儿','问题','一会儿','一点','现在','两个',
 #          '三个','我','的','是','以及','干嘛','用来','很','到底'}
+    num = ['1','2','3','4','5','6','7','8','9']
     stopwords = set()
     content = [line.strip() for line in open(r'/app/wxcloudrun/baidu_stopwords.txt','r',encoding="utf-8").readlines()]
     stopwords.update(content)
+    stopwords.update(num)
     texts = []
 
     file = request.json.get('allcomment')
