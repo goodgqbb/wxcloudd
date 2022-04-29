@@ -68,7 +68,7 @@ def upload():
 #     courseid = request.form.get('courseid')
     
     text = str(texts)
-    bg_pic = imread('/app/wxcloudrun/R-C.jpg')
+    bg_pic = imread('/app/wxcloudrun/backimage.png')
     wordcloud = WordCloud(mask=bg_pic,background_color='white',font_path='/app/wxcloudrun/华文楷体.ttf',scale=1.5).generate(text)
     '''参数说明：
     mask:设置背景图片   background_color:设置背景颜色
